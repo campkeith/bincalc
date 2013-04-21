@@ -1,0 +1,71 @@
+#! /bin/bash
+
+BINCALC=./bincalc
+
+diff -u <(
+
+( echo "100 - 199"
+  echo "1000 + 243"
+  echo "21000 + 22000"
+  echo "32767 + 1"
+  echo "-32767 - 1"
+) | ${BINCALC} s16
+
+( echo "100 - 199"
+  echo "21000 + 22000"
+  echo "32767 + 1"
+) | ${BINCALC} u16
+
+( echo "1000 + 1"
+  echo "11 / 3"
+  echo "100 - 0.25"
+  echo "100 - 0.3"
+  echo "-100 + 0.3"
+  echo "9000 + 0.0001 - 9005"
+  echo "9000 - 9005 + 0.0001"
+  echo "9000 + 0.01"
+  echo "9000 * 0.01"
+) | ${BINCALC} f32
+
+( echo "22 * 33"
+  echo "100 * 500"
+  echo "-100 * 500"
+  echo "12 / 3"
+  echo "11 / 3"
+  echo "10 / 3"
+  echo "9 / 3"
+  echo "12 % 3"
+  echo "11 % 3"
+  echo "10 % 3"
+  echo "9 % 3"
+) | ${BINCALC} s16
+
+( echo "4 << 0"
+  echo "4 << 1"
+  echo "4 << 2"
+  echo "4 << 3"
+  echo "4 << 4"
+  echo "9 << 14"
+  echo "1 << 15"
+  echo "10 >> 0"
+  echo "10 >> 1"
+  echo "10 >> 2"
+  echo "10 >> 3"
+  echo "10 >> 4"
+) | ${BINCALC} s16
+
+( echo "x01fa & 1"
+  echo "x3030 & 1"
+  echo "x2911 & 1"
+  echo "x01fa >> 4 & 1"
+  echo "x3040 >> 4 & 1"
+  echo "x2911 >> 4 & 1"
+  echo "x0001 | x0080 | x0040"
+  echo "(x0001 | x0080 | x0040) & x0080"
+  echo "(x0001 | x0040) & x0080"
+  echo "x45ff & ~1"
+  echo "x1234 ^ x5678"
+  echo "x1234 & ~x5678 | ~x1234 & x5678"
+) | ${BINCALC} u16
+
+) expected-results
