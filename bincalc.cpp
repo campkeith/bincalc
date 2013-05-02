@@ -464,7 +464,7 @@ static encoded_value evaluate_operator(operator_t op, encoded_value value)
         fprintf(stderr, "evaluate_operator: invalid encoding: %d\n", (int)result.encoding);
         break;
     }
-    
+
     if (success)
     {
         if (verbose)
@@ -557,7 +557,7 @@ static encoded_value evaluate_operator(operator_t op, encoded_value left, encode
         fprintf(stderr, "Mixed types not supported\n");
         return INVALID_VALUE;
     }
-    
+
     bool success = false;
     result.encoding = left.encoding;
     switch (result.encoding)
@@ -714,7 +714,7 @@ int main(int argc, char * argv[])
         argv++;
         argc--;
     }
-    
+
     if (argc != 2)
     {
         usage(argv[0]);
